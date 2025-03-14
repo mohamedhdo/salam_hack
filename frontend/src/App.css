@@ -230,6 +230,8 @@
 
 .form-body {
   padding: 2rem;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .form-group {
@@ -281,7 +283,7 @@
   margin-top: 1rem;
 }
 
-/* Success Message Popup */
+/* Success Message Popup - continued */
 .success-message {
   position: fixed;
   top: 20px;
@@ -334,7 +336,25 @@
   }
 }
 
-/* Responsive adjustments - continued */
+/* Form input validation styling */
+.form-input:invalid:focus {
+  border-color: #ff3860;
+}
+
+.form-input:valid:focus {
+  border-color: #4CAF50;
+}
+
+/* Form field animations */
+.form-group {
+  transition: transform 0.3s;
+}
+
+.form-group:focus-within {
+  transform: translateX(5px);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .hero, .get-started-container {
     flex-direction: column;
@@ -405,4 +425,27 @@
   .form-input, .submit-button {
     padding: 0.7rem;
   }
+  
+  .form-body {
+    padding: 1.5rem;
+  }
+}
+
+/* Scrollbar styling */
+.form-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.form-body::-webkit-scrollbar-thumb {
+  background: #5b5bff;
+  border-radius: 4px;
+}
+
+.form-body::-webkit-scrollbar-thumb:hover {
+  background: #4a4aff;
 }

@@ -5,6 +5,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    age: '',
     height: '',
     weight: '',
     goal: ''
@@ -146,6 +149,47 @@ function GetStartedPage({ formData, handleFormChange, handleSubmit }) {
         </div>
         
         <form className="form-body" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input 
+              type="text" 
+              id="firstName" 
+              placeholder="Enter your first name" 
+              className="form-input"
+              value={formData.firstName}
+              onChange={handleFormChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input 
+              type="text" 
+              id="lastName" 
+              placeholder="Enter your last name" 
+              className="form-input"
+              value={formData.lastName}
+              onChange={handleFormChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="age">Age</label>
+            <input 
+              type="number" 
+              id="age" 
+              placeholder="Enter your age" 
+              className="form-input"
+              value={formData.age}
+              onChange={handleFormChange}
+              min="18"
+              max="99"
+              required
+            />
+          </div>
+          
           <div className="form-group">
             <label htmlFor="height">Height</label>
             <input 
