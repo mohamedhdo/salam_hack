@@ -1,0 +1,408 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Common styles */
+.app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Header Styles - Fixed across all pages */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5b5bff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+
+.nav-link:hover {
+  color: #5b5bff;
+}
+
+.nav-link.active {
+  color: #5b5bff;
+  font-weight: bold;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #5b5bff;
+}
+
+/* Home Page Styles */
+.container {
+  width: 100%;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  background-color: #7676ff;
+  color: white;
+}
+
+.hero-content {
+  flex: 1;
+  padding-top: 2rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.cta-button {
+  background-color: #ff6b95;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  background-color: #d6e0ff;
+  border-radius: 1rem;
+}
+
+.how-it-works {
+  padding: 3rem 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.step {
+  flex: 1;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step-number {
+  width: 3rem;
+  height: 3rem;
+  background-color: #f0f4ff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.step-title {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.step-text {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Get Started Page Styles */
+.get-started-container {
+  display: flex;
+  min-height: calc(100vh - 70px); /* Adjust for header */
+  background-color: #7676ff;
+}
+
+.get-started-content {
+  flex: 1;
+  padding: 5rem 2rem;
+  color: white;
+}
+
+.get-started-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.get-started-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.get-started-form {
+  flex: 1;
+  background-color: white;
+  border-radius: 1rem;
+  margin: 2rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  background-color: #5b5bff;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.form-body {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #5b5bff;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #5b5bff;
+  color: white;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #4a4aff;
+}
+
+.privacy-notice {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 1rem;
+}
+
+/* Success Message Popup */
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out, fadeOut 0.3s ease-out 2.7s;
+}
+
+.success-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.success-icon {
+  font-size: 1.2rem;
+  background-color: white;
+  color: #4CAF50;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments - continued */
+@media (max-width: 768px) {
+  .hero, .get-started-container {
+    flex-direction: column;
+  }
+  
+  .steps {
+    flex-direction: column;
+  }
+  
+  .hero-image {
+    margin-top: 2rem;
+  }
+  
+  .get-started-form {
+    margin: 1rem;
+  }
+  
+  .get-started-content {
+    padding: 3rem 1.5rem;
+  }
+  
+  .nav {
+    gap: 1rem;
+  }
+  
+  .header {
+    padding: 1rem;
+  }
+  
+  .hero-title, .get-started-title {
+    font-size: 2rem;
+  }
+  
+  .success-message {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+  
+  .hero-title, .get-started-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-text, .get-started-text {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    padding: 0.7rem 1.5rem;
+  }
+  
+  .step {
+    padding: 1.5rem;
+  }
+  
+  .step-title {
+    font-size: 1.1rem;
+  }
+  
+  .form-input, .submit-button {
+    padding: 0.7rem;
+  }
+}
