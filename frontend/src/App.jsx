@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import WorkoutPlan from './WorkoutPlan';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -28,6 +29,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowSuccessMessage(true);
+    setCurrentPage('workout'); // Navigate to workout plan after form submission
     setTimeout(() => {
       setShowSuccessMessage(false);
     }, 3000);
@@ -56,14 +58,16 @@ function App() {
       
       {currentPage === 'home' ? (
         <HomePage navigateToPage={navigateToPage} />
-      ) : (
+      ) : currentPage === 'getStarted' ? (
         <GetStartedPage 
           navigateToPage={navigateToPage} 
           formData={formData}
           handleFormChange={handleFormChange}
           handleSubmit={handleSubmit}
         />
-      )}
+      ) : currentPage === 'workout' ? (
+        <WorkoutPlan userData={formData} />
+      ) : null}
 
       {showSuccessMessage && (
         <div className="success-message">
