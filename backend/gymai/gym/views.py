@@ -15,13 +15,19 @@ class GenerateWorkoutPlanView(APIView):
         if serializer.is_valid():
             user_data = serializer.validated_data
             prompt = f"""
-Create a weekly workout timetable for {user_data['first_name']} {user_data['last_name']}, {user_data['age']} years old, {user_data['height']} cm, {user_data['weight']} kg.
+Create a weekly workout timetable and nutrition plan for {user_data['first_name']} {user_data['last_name']}, {user_data['age']} years old, {user_data['height']} cm, {user_data['weight']} kg.
 Their goal is {user_data['goal']}.
 
 IMPORTANT: Your response must be ONLY valid JSON with no additional text or explanation. Format as follows:
 {{
-  "Monday": ["Exercise 1: 3 sets of 10 reps", "Exercise 2: 4 sets of 8 reps"],
-  "Tuesday": ["Exercise 1: 3 sets of 10 reps", "Exercise 2: 4 sets of 8 reps"],
+  "Monday": {{
+    "Workout": ["Exercise 1: 3 sets of 10 reps", "Exercise 2: 4 sets of 8 reps"],
+    "Nutrition": ["Breakfast: Example meal", "Lunch: Example meal", "Dinner: Example meal", "Snacks: Example snack"]
+  }},
+  "Tuesday": {{
+    "Workout": ["Exercise 1: 3 sets of 10 reps", "Exercise 2: 4 sets of 8 reps"],
+    "Nutrition": ["Breakfast: Example meal", "Lunch: Example meal", "Dinner: Example meal", "Snacks: Example snack"]
+  }},
   ...and so on for each day
 }}
 """
