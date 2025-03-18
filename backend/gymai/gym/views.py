@@ -43,6 +43,8 @@ class Info(generics.RetrieveUpdateAPIView):
     queryset=UserInfo.objects.all()
     serializer_class=UserInfoSerializer
     lookup_field = "id"
+
+    # test github
     
 class Fill(generics.CreateAPIView):
     queryset=UserInfo.objects.all()
