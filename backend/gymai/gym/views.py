@@ -21,11 +21,11 @@ Their goal is {user_data['goal']}.
 IMPORTANT: Your response must be ONLY valid JSON with no additional text or explanation. Format as follows:
 {{
   "Monday": {{
-    "Workout": ["Bench Press: 3 sets of 10 reps", "Squats: 4 sets of 8 reps", "Lat Pulldowns: 3 sets of 12 reps"],
+    "Workout": ["Bench Press: 3 sets of 10 reps", "Squats: 4 sets of 8 reps", "Lat Pulldowns: 3 sets of 12 reps", "Bicep Curls: 3 sets of 12 reps", "Tricep Extensions: 3 sets of 12 reps"],
     "Nutrition": ["Breakfast: Example meal", "Lunch: Example meal", "Dinner: Example meal", "Snacks: Example snack"]
   }},
   "Tuesday": {{
-    "Workout": ["Deadlifts: 3 sets of 10 reps", "Pull-ups: 4 sets of 8 reps", "Shoulder Press: 3 sets of 10 reps"],
+    "Workout": ["Deadlifts: 3 sets of 10 reps", "Pull-ups: 4 sets of 8 reps", "Shoulder Press: 3 sets of 10 reps", "Leg Extensions: 3 sets of 12 reps", "Planks: 3 sets of 45 seconds"],
     "Nutrition": ["Breakfast: Example meal", "Lunch: Example meal", "Dinner: Example meal", "Snacks: Example snack"]
   }},
   ...and so on for each day
