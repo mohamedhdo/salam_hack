@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import WorkoutPlan from './WorkoutPlan';
+import Header from './Header';
+import GetStartedPage from './GetStartedPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -20,7 +22,22 @@ function App() {
 
   const navigateToPage = (page) => {
     setCurrentPage(page);
+    window.scrollTo(0, 0); // Scroll to top when changing pages
   };
+
+  // Effect to ensure smooth scrolling works on initial page load
+  useEffect(() => {
+    if (currentPage === 'home') {
+      // Wait for the home page to fully render
+      setTimeout(() => {
+        const hash = window.location.hash;
+        if (hash === '#how-it-works') {
+          const section = document.getElementById('how-it-works-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [currentPage]);
 
   const handleFormChange = (e) => {
     const { id, value } = e.target;
@@ -93,24 +110,7 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="logo" onClick={() => navigateToPage('home')}>FitGenAI</div>
-        <nav className="nav">
-          <button 
-            className={`nav-link ${currentPage === 'home' ? 'active' : ''}`} 
-            onClick={() => navigateToPage('home')}
-          >
-            Home
-          </button>
-          <button
-            className="nav-link"
-            onClick={() => navigateToPage('home')}
-          >
-            how it works
-          </button>
-          <button className="nav-link">Log in</button>
-        </nav>
-      </header>
+      <Header navigateToPage={navigateToPage} currentPage={currentPage} />
       
       {currentPage === 'home' ? (
         <HomePage navigateToPage={navigateToPage} />
@@ -156,11 +156,11 @@ function HomePage({ navigateToPage }) {
           </button>
         </div>
         <div className="hero-image">
-          <img src="/api/placeholder/400/320" alt="Fitness illustration" />
+          <img src="/Fitness.jpg" alt="Fitness illustration" />
         </div>
       </div>
       
-      <div className="how-it-works">
+      <div className="how-it-works" id="how-it-works-section">
         <h2 className="section-title">How it works</h2>
         <div className="steps">
           <div className="step">
@@ -185,119 +185,6 @@ function HomePage({ navigateToPage }) {
             </p>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function GetStartedPage({ formData, handleFormChange, handleSubmit }) {
-  return (
-    <div className="get-started-container">
-      <div className="get-started-content">
-        <h1 className="get-started-title">Your personalized fitness<br />& nutrition program by AI</h1>
-        <p className="get-started-text">
-          Transform your body and improve your health with a program tailored<br />
-          to your goals, body type and preferences. Our advanced AI creates<br />
-          the perfect fitness plan for your unique needs.
-        </p>
-      </div>
-      
-      <div className="get-started-form">
-        <div className="form-header">
-          <h2>Get Started Now</h2>
-          <p>Just provide your basic information</p>
-        </div>
-        
-        <form className="form-body" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
-            <input 
-              type="text" 
-              id="firstName" 
-              placeholder="Enter your first name" 
-              className="form-input"
-              value={formData.firstName}
-              onChange={handleFormChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
-            <input 
-              type="text" 
-              id="lastName" 
-              placeholder="Enter your last name" 
-              className="form-input"
-              value={formData.lastName}
-              onChange={handleFormChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="age">Age</label>
-            <input 
-              type="number" 
-              id="age" 
-              placeholder="Enter your age" 
-              className="form-input"
-              value={formData.age}
-              onChange={handleFormChange}
-              min="18"
-              max="99"
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="height">Height</label>
-            <input 
-              type="text" 
-              id="height" 
-              placeholder="Enter your Height...(cm)" 
-              className="form-input"
-              value={formData.height}
-              onChange={handleFormChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="weight">Weight</label>
-            <input 
-              type="text" 
-              id="weight" 
-              placeholder="Enter your Weight...(kg)" 
-              className="form-input"
-              value={formData.weight}
-              onChange={handleFormChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="goal">Your Goal</label>
-            <select 
-              id="goal" 
-              className="form-input"
-              value={formData.goal}
-              onChange={handleFormChange}
-              required
-            >
-              <option value="">Select your goal...</option>
-              <option value="lose-weight">Lose Weight</option>
-              <option value="build-muscle">Build Muscle</option>
-              <option value="improve-fitness">Improve Fitness</option>
-            </select>
-          </div>
-          
-          <button type="submit" className="submit-button">Submit</button>
-          
-          <p className="privacy-notice">
-            Your data is secure and will only be used to create your personalized program
-          </p>
-        </form>
       </div>
     </div>
   );
