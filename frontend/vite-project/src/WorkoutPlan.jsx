@@ -13,6 +13,7 @@ function WorkoutPlan({ userData }) {
       if (!userData) return;
       
       setLoading(true);
+      setError(null);
       try {
         const response = await fetch(`${API_BASE_URL}/`, {
           method: 'POST',
@@ -34,7 +35,13 @@ function WorkoutPlan({ userData }) {
         }
 
         const data = await response.json();
-        setWorkoutData(JSON.parse(data.workout_plan));
+        console.log("Received data from API:", data);
+        
+        if (typeof data.workout_plan === 'string') {
+          setWorkoutData(JSON.parse(data.workout_plan));
+        } else {
+          setWorkoutData(data.workout_plan);
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -45,6 +52,10 @@ function WorkoutPlan({ userData }) {
     fetchWorkoutPlan();
   }, [userData]);
 
+  useEffect(() => {
+    console.log("Updated workoutData:", workoutData);
+  }, [workoutData]);
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -54,22 +65,9 @@ function WorkoutPlan({ userData }) {
     );
   }
 
-  if (error) {
-    return (
-      <div className="error-container">
-        <p>{error}</p>
-        <button onClick={() => window.location.reload()}>Try Again</button>
-      </div>
-    );
-  }
+  
 
-  if (!workoutData) {
-    return (
-      <div className="empty-plan-container">
-        <p>Submit your information to get your personalized workout plan</p>
-      </div>
-    );
-  }
+ 
 
   return (
     <div className="workout-plan-container">
@@ -94,15 +92,28 @@ function WorkoutPlan({ userData }) {
       </div>
 
       <div className="workout-schedule">
-        {Object.entries(workoutData).map(([day, exercises]) => (
+        {Object.entries(workoutData).map(([day, data]) => (
           <div key={day} className="day-plan">
             <h3 className="day-header">{day}</h3>
-            <div className="exercises-list">
-              {exercises.map((exercise, index) => (
-                <div key={index} className="exercise-item">
-                  <div className="exercise-name">{exercise}</div>
-                </div>
-              ))}
+            
+           
+            <div  >
+              <h4>Workout</h4>
+              <ul>
+                {data.Workout.map((exercise, index) => (
+                  <li key={index}>{exercise}</li>
+                ))}
+              </ul>
+            </div>
+
+             
+            <div >
+              <h4>Nutrition</h4>
+              <ul>
+                {data.Nutrition.map((meal, index) => (
+                  <li key={index}>{meal}</li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
